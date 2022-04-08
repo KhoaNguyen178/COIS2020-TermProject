@@ -64,7 +64,7 @@ namespace projectPhase2
                 // sorting algorithm here
                 bookList.AddLast(newBook);
                 //sort algorithm
-                Organize();
+                //Organize();
             }
 
         }
@@ -78,66 +78,6 @@ namespace projectPhase2
             }
         }
         //bubble sort algorithm
-        public void Organize()
-        {
-            int length = bookList.Count;
-            for (int i = 0; i < length - 1; i++)
-            {
-                var recentNode = bookList.First;
-                for (int j = 0; j < length - i - 1; j++)//loop through contacts
-                {
-                    //get the 2 names
-                    char[] c1 = bookList.ElementAt(j).getName().ToLower().ToCharArray();
-                    char[] c2 = bookList.ElementAt(j + 1).getName().ToLower().ToCharArray();
-
-                    //loop through letters
-                    if (c1.Length < c2.Length)
-                    {
-                        for (int n = 0; n < c1.Length; n++)
-                        {
-                            if (c2[n] < c1[n])
-                            {
-                                //swap
-                                var temp = recentNode.Next;
-                                bookList.Remove(temp);
-                                bookList.AddBefore(recentNode, temp);
-                                break;
-                            }
-                            else if (c2[n] > c1[n])
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        for (int n = 0; n < c2.Length; n++)
-                        {
-                            if (c2[n] < c1[n])
-                            {
-                                //swap
-                                var temp = recentNode.Next;
-                                bookList.Remove(temp);
-                                bookList.AddBefore(recentNode, temp);
-                                break;
-                            }
-                            else if (c2[n] > c1[n])
-                            {
-                                break;
-                            }
-                            else if (n == c2.Length - 1)
-                            {
-                                //swap because c2 is shorter, so it should come before the other one
-                                var temp = recentNode.Next;
-                                bookList.Remove(temp);
-                                bookList.AddBefore(recentNode, temp);
-                            }
-                        }
-                    }
-
-                    recentNode = recentNode.Next;
-                }
-            }
-        }
+        
     }
 }
