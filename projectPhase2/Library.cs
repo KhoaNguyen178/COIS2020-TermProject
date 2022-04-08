@@ -77,8 +77,6 @@ namespace projectPhase2
             }
         }
         //bubble sort algorithm
-
-            }
-        }
+       
     }
 }
