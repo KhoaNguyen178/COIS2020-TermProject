@@ -78,6 +78,10 @@ namespace projectPhase2
                 observer.Update(this);
             }
         }
+        public override string ToString()
+        {
+            return "\nName: " + name + "\nCategory: " + category + "\nAuthor: " + author + "\nPublisher: " + publisher;
+        }
     }
 }
 

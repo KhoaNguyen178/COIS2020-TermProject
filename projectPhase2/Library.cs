@@ -31,9 +31,9 @@ namespace projectPhase2
             //If the name of the book is not in the library, add it
             if (name != null)
             {
-                Book newContact = new Book(name, category, author, publisher);
-                getNewBook(newContact);
-                Console.WriteLine("Book added.");
+                Book newBook = new Book(name, category, author, publisher);
+                getNewBook(newBook);
+                Console.WriteLine($"{newBook.Name} is added");
                 return true;
             }
 
@@ -61,23 +61,63 @@ namespace projectPhase2
             }
             else
             {
-                // sorting algorithm here
                 bookList.AddLast(newBook);
                 //sort algorithm
-                //Organize();
+                Organize();
+                
             }
 
         }
-
         public void displayBookInfo()
         {
-            Console.WriteLine($"{checkOutClerk}'s library: {bookList.Count} books");
+            Console.WriteLine($"{checkOutClerk}'s library: {bookList.Count} books\n");
             foreach (Book c in bookList)
             {
                 Console.WriteLine(c.getName());
             }
+            Console.WriteLine("\n***Books are sorted alphabetically.***\n");
         }
         //bubble sort algorithm
-        
+        public void Organize()
+        {
+            string[] a = new string[bookList.Count];
+            int count = 0;
+            foreach (var book in bookList)
+            {
+                a[count] = book.getName();
+                count++;
+            }
+            var tempArray = BubbleSort(a);
+            var sortedArray = new Book[bookList.Count];
+            count = 0;
+            foreach (string name in tempArray)
+            {
+                sortedArray[count] = getBook(name);
+                count++;
+            }
+
+            bookList = new LinkedList<Book>(sortedArray);
+        }
+
+        public Array BubbleSort(string[] ar)
+        {
+            var arr = ar;
+            int length = arr.Length;
+            String temp;
+
+            for (int j = 0; j < length - 1; j++)
+            {
+                for (int i = j + 1; i < length; i++)
+                {
+                    if (arr[j].CompareTo(arr[i]) > 0)
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[i];
+                        arr[i] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
     }
 }
