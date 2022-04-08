@@ -2,12 +2,10 @@
 {
     public interface IBookFacade
     {
-        
-        public string getName();
-        public string getCategory();
-        public string getAuthor();
-        public string getPublisher();
-
+        string getName();
+        string getCategory();
+        string getAuthor();
+        string getPublisher();
 
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace projectPhase2
 {
-    public class Book : IBookFacade, ICelebrity
+    public class Book : IObservable, IBookFacade
     {
         private string name;
         private string category;
@@ -18,7 +18,28 @@ namespace projectPhase2
             this.author = _author;
             this.publisher = _publisher;
         }
-
+        //properties
+        public int Flag
+        {
+            get
+            {
+                return flag;
+            }
+            set
+            {
+                flag = value;
+                // Flag value changed. So notify observer(s).
+                NotifyRegisteredObserver();
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+        //methods
         public string getCategory()
         {
             return category;
@@ -37,35 +58,17 @@ namespace projectPhase2
         {
             return publisher;
         }
-        // 
-        public int Flag
-        {
-            get
-            {
-                return flag;
-            }
-            set
-            {
-                flag = value;
-                // Flag value changed. So notify observer(s).
-                NotifyRegisteredObserver();
-            }
-        }
-        public string Name
-        {
-         get
-            {
-            return name;
-            }
-        }
+
         public void Register(IObserver anObserver)
         {
             observerList.Enqueue(anObserver);
         }
         // To unregister a subscriber.
-        public void Unregister(IObserver anObserver)
+        public void Unregister()
         {
             observerList.Dequeue();
+            flag -= 1;
+            NotifyRegisteredObserver();
         }
         // Notify all registered observers.
         public void NotifyRegisteredObserver()

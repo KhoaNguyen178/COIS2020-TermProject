@@ -6,56 +6,52 @@ namespace projectPhase2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("***Adding book to the library.***\n");
+            //Singleton Pattern
             Library group2 = Library.Instance;
             Book[] a =
             {
                 new Book("Computer Organization and Design","CS","David","MacMillan"),
-                new Book("Data Structures and Algorithm","CS","Tom",""),
-                new Book("Introduction to probability","Math","Rivem","Oxford"),
-                new Book("Object-oriented Software Engineering","CS","Jason","Pearson"),
+                new Book("Data Structures and Algorithm","CS","Tom","New York's Times"),
+                new Book("Introduction to probability","Math","Alice","Oxford"),
+                new Book("Object-oriented Software Engineering","CS","Canorus","Pearson"),
             };
-
             foreach (var c in a)
             {
                 group2.addBook(c.getName(), c.getCategory(), c.getAuthor(), c.getPublisher());
             }
+            Console.ReadLine();
 
-            Console.WriteLine();
+            //Sorting Algorithm Demonstration
             Console.WriteLine("***Sorting Algorithm.***\n");
-
-            Console.WriteLine("List of books in the library are: \n");
             group2.displayBookInfo();
+            Console.ReadLine();
 
-            Console.WriteLine();
+            //Observer Pattern Demonstration
             Console.WriteLine("***Observer Pattern Demonstration.***\n");
             // We have 4 observers - 2 of them are ObserverType1, 1 is of
             // ObserverType2
-            IObserver myObserver1 = new ObserverType1("Roy");
-            IObserver myObserver2 = new ObserverType1("Kevin");
-            IObserver myObserver3 = new ObserverType2("Bose");
-            IObserver myObserver4 = new ObserverType2("Jacklin");
-            Console.WriteLine("Subscribe a person to a book now.");
-            ICelebrity book1 = new Book("Metamorphosis","Kafka","","");
+            IObserver myObserver1 = new Student("Roy");
+            IObserver myObserver2 = new Student("Kevin");
+            IObserver myObserver3 = new Staff("Bose");
+            Console.WriteLine("Subscribe a person to a book now.\n");
+
             // Registering the observers - Roy, Kevin, Bose
-            book1.Register(myObserver1);
-            book1.Register(myObserver2);
-            book1.Register(myObserver3);
-            Console.WriteLine(" Book 1 currently has 5 copies available.");
-            book1.Flag = 5;
+            a[1].Register(myObserver1);
+            a[1].Register(myObserver2);
+            a[1].Register(myObserver3);
+            Console.WriteLine($"{a[1].getName()} currently has 5 copies available.\n");
+            a[1].Flag = 5;
+            Console.ReadLine();
             /*
-            Kevin doesn't want to get further notification.
-            So, unregistering the observer(Kevin)).
+            The list of subscriber is a queue,
+            We make an assumption that the first person in the list 
+            would be prioritized to get the book after getting notified.
             */
-            Console.WriteLine("\nKevin is no longer interested in borrowing this book. He is removed from the subscriber list now.");
-            book1.Unregister(myObserver2);
-            // No notification is sent to Kevin this time. He has
+            Console.WriteLine("A student has gotten themself a copy; they are removed from the subscriber list now.\n");
+            a[1].Unregister();
+            // No notification is sent to Roy this time. He has
             // unregistered.
-            Console.WriteLine("\n Book 1 currently has 50 copies available.");
-            book1.Flag = 50;
-            // Kevin is registering himself again
-            book1.Register(myObserver2);
-            Console.WriteLine("\n Book 1 currently has 100 copies available.");
-            book1.Flag = 100;
 
         }
     }
