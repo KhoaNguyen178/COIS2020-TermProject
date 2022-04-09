@@ -51,6 +51,29 @@ namespace projectPhase2
 
             return null;
         }
+        public void deleteBook(string name)
+        {
+            bool bookFound = false;
+            foreach (var book in bookList)
+            {
+                if (book.getName() == name)
+                {
+                    bookList.Remove(book);
+                    Organize();
+                    bookFound = true;
+                    break;
+                }
+            }
+            if (bookFound)
+            {
+                Console.WriteLine($"The book {name} has been deleted.");
+            }
+            else
+            {
+                Console.WriteLine("Error. Book not found!");
+            }
+
+        }
 
         private void getNewBook(Book newBook)
         {

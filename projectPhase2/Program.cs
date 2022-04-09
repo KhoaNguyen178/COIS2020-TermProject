@@ -73,7 +73,8 @@ namespace projectPhase2
             while (!logout)
             {
                 Console.WriteLine($"\nTo add a new book please enter 1. \n" +
-                $"To get information on a book enter 2. \nTo display all books enter 3. \nTo log out enter 4.");
+                $"To get information on a book enter 2. \nTo display all books enter 3. \nTo delete a record enter 4(Admins Only).\nTo add a new user enter 5(Admins Only).\nTo log out enter 6.");
+
 
                 var choice = Console.ReadLine();
 
@@ -109,9 +110,39 @@ namespace projectPhase2
                 {
                     group2.displayBookInfo();
                 }
-                else if (choice == "4")
+                else if (choice == "6")
                 {
                     logout = true;
+                }
+                else if (choice == "5")
+                {
+                    if (user.permissions == Permissions.Admin)
+                    {
+                        Console.WriteLine("Please enter the username:");
+                        var username = Console.ReadLine();
+                        Console.WriteLine("Please enter the password:");
+                        var password = Console.ReadLine();
+
+                        users.Add(new Users(username, password, Permissions.User));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error! Invalid Permissions.");
+                    }
+
+                }
+                else if (choice == "4")
+                {
+                    if (user.permissions == Permissions.Admin)
+                    {
+                        Console.WriteLine("Please enter the name of the book to be deleted.");
+                        var bookName = Console.ReadLine();
+                        group2.deleteBook(bookName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error! Invalid Permissions.");
+                    }
                 }
                 else
                 {
