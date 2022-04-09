@@ -7,16 +7,12 @@ namespace projectPhase2
 {
     public class Library
     {
-        private string checkOutClerk;
         private LinkedList<Book> bookList = new LinkedList<Book>();
-        private static Library instance = new Library("Group 2");
+        private static Library instance = new Library();
         private Stack<Book> bookToBeAdded = new Stack<Book>();
         private int capacity = 10;
-
-        private Library(string _checkOutClerk)
-        {
-            this.checkOutClerk = _checkOutClerk;
-        }
+        //private constructor to implement singleton
+        private Library(){}
 
         public static Library Instance   // singleton class
         {
@@ -93,7 +89,7 @@ namespace projectPhase2
         }
         public void displayBookInfo()
         {
-            Console.WriteLine($"{checkOutClerk}'s library: {bookList.Count} books\n");
+            Console.WriteLine($"Group 2's library: {bookList.Count} books\n");
             foreach (Book c in bookList)
             {
                 Console.WriteLine(c.getName());
