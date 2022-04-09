@@ -78,6 +78,7 @@ namespace projectPhase2
                 observer.Update(this);
             }
         }
+        //method to print out books details
         public override string ToString()
         {
             return "\nName: " + name + "\nCategory: " + category + "\nAuthor: " + author + "\nPublisher: " + publisher;

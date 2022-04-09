@@ -4,6 +4,7 @@ using System.Text;
 
 namespace projectPhase2
 {
+    //Users class to control permissions 
     class Users
     {
         public string username;

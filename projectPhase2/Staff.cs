@@ -4,6 +4,7 @@ using System.Text;
 
 namespace projectPhase2
 {
+    //Observer pattern, staff is a type of observer
     class Staff : IObserver
     {
         string nameOfObserver;

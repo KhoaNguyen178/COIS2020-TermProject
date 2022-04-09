@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 namespace projectPhase2
 {
+    //Observer Pattern, IObservable interface
     public interface IObservable
     {
         // Name of Subject
