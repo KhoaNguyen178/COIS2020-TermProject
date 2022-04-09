@@ -164,7 +164,7 @@ namespace projectPhase2
                 new Book("Object-oriented Software Engineering","CS","Canorus","Pearson"),
                 new Book("Data Structures and Algorithm","CS","Tom","New York's Times"),
                 new Book("Computer Organization and Design","CS","David","MacMillan"),
-                new Book("Introduction to probability","Math","Alice","Oxford"),
+                new Book("Introduction to Probability","Math","Alice","Oxford"),
                 
             };
             foreach (var c in a)
